@@ -1,7 +1,7 @@
 variables:
-  DeploymentName: MLScoreDeployJob
-  TridentWorkloadTypeShort: aimlscore
-  DeployLocation: eastus  
+  DeploymentName: ADOTrinDeployJob
+  TridentWorkloadTypeShort: adomltrain
+  DeployLocation: eastus2  
   ProjectLocation: "."
   PythonPath: "."
-  Template: MLTrainDeployAMLJob.yml
+  Template: ADOTrainDeployAMLJob.yml
