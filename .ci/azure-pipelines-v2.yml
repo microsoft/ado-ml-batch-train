@@ -21,3 +21,7 @@ stages:
     workload_vars: ../vars/mlhyperparametertuning_vars.yml
     flighting_release: false
     flighting_preview: false
+    sql_server_name: $(sql_server_name)
+    sql_database_name: $(sql_database_name)
+    sql_username: $(sql_username)
+    sql_password: $(sql_password)
