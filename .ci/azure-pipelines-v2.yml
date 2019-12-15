@@ -9,22 +9,13 @@ resources:
       name: microsoft/AI
       endpoint: AIArchitecturesAndPractices-GitHub
 
-trigger:
-  branches:
-    include:
-    - master
-    - mabou/instrument
+trigger: none
 
-pr:
-  autoCancel: true
-  branches:
-    include:
-    - master
-    - mabou/instrument
+pr: none
 
 stages:
 - template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
   parameters:
-    jobDisplayName: MLScoreDeployJob
+    jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
     workload_vars: ../vars/mlhyperparametertuning_vars.yml
