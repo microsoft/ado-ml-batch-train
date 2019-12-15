@@ -19,3 +19,5 @@ stages:
     jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
     workload_vars: ../vars/mlhyperparametertuning_vars.yml
+    flighting_release: false
+    flighting_preview: false
