@@ -13,10 +13,12 @@ trigger: none
 
 pr: none
 
+pool:
+  name: $(Agent_Name)
+
 stages:
 - template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
   parameters:
-    Agent_Name: $(Agent_Name)
     jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
     workload_vars: ../vars/mlhyperparametertuning_vars.yml
