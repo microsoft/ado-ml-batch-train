@@ -1,0 +1,30 @@
+# MLHyperparameterTuning  Pipeline
+#
+# A Github Service Connection must also be created with the name "AIArchitecturesAndPractices-GitHub"
+
+resources:
+  repositories:
+    - repository: aitemplates
+      type: github
+      name: microsoft/AI
+      endpoint: AIArchitecturesAndPractices-GitHub
+
+trigger:
+  branches:
+    include:
+    - master
+    - mabou/instrument
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+    - mabou/instrument
+
+stages:
+- template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
+  parameters:
+    jobDisplayName: MLScoreDeployJob
+    DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
+    workload_vars: ../vars/mlhyperparametertuning_vars.yml
