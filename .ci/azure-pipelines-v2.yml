@@ -29,7 +29,7 @@ stages:
     sql_server_name: $(sql_server_name)
     sql_database_name: $(sql_database_name)
     sql_username: $(sql_username)
-    sql_password: "$(sql_password)"
+    sql_password: '$(sql_password)'
     
     container_name: $(container_name)
     account_name: $(account_name)
