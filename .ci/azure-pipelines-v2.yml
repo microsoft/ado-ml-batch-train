@@ -26,4 +26,4 @@ stages:
     sql_database_name: $(sql_database_name)
     sql_username: $(sql_username)
     sql_password: $(sql_password)
-    TestPostfix: $(Build.SourceBranch)
+    TestPostfix: $(Build.SourceBranchName)
