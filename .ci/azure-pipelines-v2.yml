@@ -26,7 +26,7 @@ stages:
     sql_database_name: $(sql_database_name)
     sql_username: $(sql_username)
     sql_password: $(sql_password)
-    TestPostfix: $(Build.SourceBranchName)
+    TestPostfix: -$(Build.QueuedById)-$(Build.SourceBranchName)
     data_prep: $(data_prep)
     train: $(train)
     post_cleanup: false
