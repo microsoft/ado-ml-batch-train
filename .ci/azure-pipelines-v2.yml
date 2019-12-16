@@ -14,14 +14,13 @@ trigger: none
 pr: none
 
 stages:
-- template: .ci/stages/deploy_notebooks_stages_v3.yml@aitemplates
+- template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
   parameters:
     Agent: $(Agent_Name)
     jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
     TestPostfix: -$(Build.SourceBranchName)
     workload_vars: ../vars/ado_ml_batch_train_vars.yml
-    Template: ../steps/ADOTrainDeployAMLJob.yml
     post_cleanup: false
     flighting_release: false
     flighting_preview: false
