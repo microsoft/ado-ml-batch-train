@@ -29,3 +29,4 @@ stages:
     TestPostfix: $(Build.SourceBranchName)
     data_prep: $(data_prep)
     train: $(train)
+    post_cleanup: false
