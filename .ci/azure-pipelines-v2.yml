@@ -27,3 +27,5 @@ stages:
     sql_username: $(sql_username)
     sql_password: $(sql_password)
     TestPostfix: $(Build.SourceBranchName)
+    data_prep: coalesce($(data_prep),'true')
+    train: coalesce($(train),'true')
