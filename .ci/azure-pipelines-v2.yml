@@ -19,14 +19,18 @@ stages:
     Agent: $(Agent_Name)
     jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
+    TestPostfix: -$(Build.SourceBranchName)
     workload_vars: ../vars/ado_ml_batch_train_vars.yml
+    post_cleanup: false
     flighting_release: false
     flighting_preview: false
+    data_prep: $(data_prep)
+    train: $(train)
     sql_server_name: $(sql_server_name)
     sql_database_name: $(sql_database_name)
     sql_username: $(sql_username)
     sql_password: $(sql_password)
-    TestPostfix: -$(Build.SourceBranchName)
-    data_prep: $(data_prep)
-    train: $(train)
-    post_cleanup: false
+    blob_datastore_name: $(blob_datastore_name)
+    container_name: $(container_name)
+    account_name: $(account_name)
+    account_key: $(account_key)
