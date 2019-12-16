@@ -9,22 +9,24 @@ resources:
       name: microsoft/AI
       endpoint: AIArchitecturesAndPractices-GitHub
 
-trigger:
-  branches:
-    include:
-    - master
-    - mabou/instrument
+trigger: none
 
-pr:
-  autoCancel: true
-  branches:
-    include:
-    - master
-    - mabou/instrument
+pr: none
 
 stages:
 - template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
   parameters:
-    jobDisplayName: MLScoreDeployJob
+    Agent: $(Agent_Name)
+    jobDisplayName: ADOTrainDeployJob
     DefaultWorkingDirectory: $(System.DefaultWorkingDirectory)
-    workload_vars: ../vars/mlhyperparametertuning_vars.yml
+    workload_vars: ../vars/ado_ml_batch_train_vars.yml
+    flighting_release: false
+    flighting_preview: false
+    sql_server_name: $(sql_server_name)
+    sql_database_name: $(sql_database_name)
+    sql_username: $(sql_username)
+    sql_password: $(sql_password)
+    TestPostfix: -$(Build.SourceBranchName)
+    data_prep: $(data_prep)
+    train: $(train)
+    post_cleanup: false
