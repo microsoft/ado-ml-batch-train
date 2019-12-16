@@ -26,6 +26,6 @@ stages:
     sql_database_name: $(sql_database_name)
     sql_username: $(sql_username)
     sql_password: $(sql_password)
-    TestPostfix: ${{ coalesce(variables.TestPostfix,-$(Build.SourceBranchName)) }}
+    TestPostfix: ${{ coalesce(variables.TestPostfix,-${{Build.SourceBranchName}}) }}
     data_prep: ${{coalesce(variables.data_prep,'true')}}
     train: ${{coalesce(variables.train,'true')}}
