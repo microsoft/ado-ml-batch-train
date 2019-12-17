@@ -45,11 +45,11 @@ To set up your environment to run these notebooks, please follow these steps.  T
 3. Open a terminal emulator.
 4. Clone, fork, or download the zip file for this repository:
    ```
-   git clone https://github.com/Microsoft/MLHyperparameterTuning.git
+   git clone https://github.com/Microsoft/ado-ml-batch-train.git
    ```
 5. Enter the local repository:
    ```
-   cd MLHyperparameterTuning
+   cd ado-ml-batch-train
    ```
 6. Create the Python MLHyperparameterTuning virtual environment using the environment.yml:
    ```
