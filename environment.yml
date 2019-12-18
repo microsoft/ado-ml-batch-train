@@ -15,5 +15,4 @@ dependencies:
     - azure-cli==2.0.77
     - azureml-sdk[notebooks,automl]==1.0.76
     - git+https://github.com/Microsoft/AI-Utilities.git
-    - python-dotenv==0.10.1
     - matplotlib
