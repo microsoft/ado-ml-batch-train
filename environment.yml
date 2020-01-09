@@ -14,5 +14,6 @@ dependencies:
     - prompt_toolkit==2.0.9
     - azure-cli==2.0.77
     - azureml-sdk[notebooks,automl]==1.0.76
+    - azureml-dataprep==1.1.35
     - git+https://github.com/Microsoft/AI-Utilities.git
     - matplotlib
