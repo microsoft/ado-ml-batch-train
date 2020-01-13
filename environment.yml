@@ -1,4 +1,4 @@
-name: ado-ml-batch-train
+name: MLHyperparameterTuning
 channels:
   - conda-forge
 dependencies:
