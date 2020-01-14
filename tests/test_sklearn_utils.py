@@ -21,9 +21,9 @@ def test_create_train_test_split():
     x_train, x_test, y_train, y_test = create_train_test_split(AI_IMPACT_SCORE_DS)
 
     assert isinstance(x_train, pd.DataFrame)
-    assert type(x_test, pd.DataFrame)
-    assert type(y_train, pd.Series)
-    assert type(y_test, pd.Series)
+    assert isinstance(x_test, pd.DataFrame)
+    assert isinstance(y_train, pd.Series)
+    assert isinstance(y_test, pd.Series)
 
 
 def test_create_plots():
