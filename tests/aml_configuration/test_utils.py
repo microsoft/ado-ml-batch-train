@@ -6,7 +6,10 @@ Licensed under the MIT License.
 """
 import os
 
-from ado_ai_utils.aml_configuration.utils import init_dotenv, load_configuration, get_or_create_workspace
+from azureml.core import Workspace
+
+from ado_ai_utils.aml_configuration.utils import init_dotenv, load_configuration, get_or_create_workspace, \
+    get_workspace_from_config
 
 
 def test_init_dotenv():
@@ -50,3 +53,14 @@ def test_get_or_create_workspace():
                             cfg['workspace_region'])
 
     assert os.path.isfile('../.azureml/config.json')
+
+
+def test_get_workspace_from_config():
+    """ Test Get Workspace From Config File"""
+    cfg = load_configuration("../../workspace_conf.yml")
+
+    get_or_create_workspace(cfg['workspace_name'], cfg['subscription_id'], cfg['resource_group'],
+                            cfg['workspace_region'])
+
+    workspace = get_workspace_from_config()
+    assert type(workspace) is Workspace

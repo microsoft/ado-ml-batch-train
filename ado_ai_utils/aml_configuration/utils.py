@@ -87,3 +87,13 @@ def get_or_create_workspace(workspace_name, subscription_id, resource_group, wor
     workspace.write_config()
 
     return workspace
+
+
+def get_workspace_from_config():
+    """
+    Retrieve an AML Workspace from a previously saved configuration
+
+    :return: Azure Machine Learning Workspace
+    :rtype: azureml.core.Workspace
+    """
+    return Workspace.from_config()
