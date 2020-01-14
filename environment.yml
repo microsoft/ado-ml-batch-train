@@ -18,3 +18,5 @@ dependencies:
     - git+https://github.com/Microsoft/AI-Utilities.git
     - matplotlib
     - pyarrow>=0.11.0
+    - pytest
+    - pylint
