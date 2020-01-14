@@ -4,6 +4,7 @@ ado-ml-batch-train - aml_configuration/utils.py
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 """
+import os
 from pathlib import Path
 
 import yaml
@@ -41,6 +42,9 @@ def load_configuration(configuration_file: str):
     :return: Returns the parameters needed to configure the AML Workspace and Experiments
     :rtype: Union[Dict[Hashable, Any], list, None], str, str, str, str, Workspace, str, str
     """
+    if not os.path.isfile(configuration_file):
+        configuration_file = "sample_workspace_conf.yml"
+
     with open(configuration_file, 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
 

@@ -17,8 +17,9 @@ def register_improvements(sql_datastore: AzureSqlDatabaseDatastore) -> TabularDa
 
     :param sql_datastore: Azure Machine Learning SQL Datastore
     """
+    query_string = "SELECT *  FROM Improvements"
 
-    query = DataPath(sql_datastore, 'SELECT *  FROM Improvements')
+    query = DataPath(sql_datastore, query_string)
     improvements_sql_ds = Dataset.Tabular.from_sql_query(query)
 
     improvements_sql_ds.register(workspace=sql_datastore.workspace,
@@ -29,6 +30,25 @@ def register_improvements(sql_datastore: AzureSqlDatabaseDatastore) -> TabularDa
     return improvements_sql_ds
 
 
+def register_feedback(sql_datastore: AzureSqlDatabaseDatastore) -> TabularDataset:
+    """
+    Register Feedback Table with Impact Score calculation by dciborow
+
+    :param sql_datastore: Azure DevOps SQL
+    :return: Pointer to Feedback Table in Azure DevOps SQL
+    """
+    query_string = "SELECT * FROM FeedbackItems"
+
+    query = DataPath(sql_datastore, query_string)
+    feedback_sql_ds = Dataset.Tabular.from_sql_query(query)
+
+    feedback_sql_ds.register(workspace=sql_datastore.workspace,
+                             name="ai_ag_ado_feedack_table",
+                             description="Feedback from Azure DevOps",
+                             create_new_version=True)
+    return feedback_sql_ds
+
+
 def register_feedback_with_impact(sql_datastore: AzureSqlDatabaseDatastore) -> TabularDataset:
     """
     Register Feedback Table with Impact Score calculation by dciborow
@@ -36,7 +56,7 @@ def register_feedback_with_impact(sql_datastore: AzureSqlDatabaseDatastore) -> T
     :param sql_datastore: Azure DevOps SQL
     :return: Pointer to Feedback Table in Azure DevOps SQL
     """
-    query_string = 'SELECT MitigationScore, Priority, CONVERT(bit, IsBlocker) as IsBlocker , (POWER(1.5,' \
+    query_string = 'SELECT MitigationScore, Priority, CONVERT(bit, IsBlocker) as IsBlocker , (POWER(1.5, ' \
                    'MitigationScore) * POWER(2,Priority) * POWER(6.585, CONVERT(bit, IsBlocker))) as dc_impact_score ' \
                    'FROM FeedbackItems'
 
@@ -45,7 +65,7 @@ def register_feedback_with_impact(sql_datastore: AzureSqlDatabaseDatastore) -> T
 
     feedback_sql_ds.register(workspace=sql_datastore.workspace,
                              name="ai_ag_ado_feedack",
-                             description="Feedback from Azure DevOps",
+                             description="Feedback from Azure DevOps with Impact Label",
                              create_new_version=True)
     return feedback_sql_ds
 
