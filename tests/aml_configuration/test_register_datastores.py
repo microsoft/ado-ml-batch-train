@@ -13,10 +13,10 @@ BLOB_DATASTORE_NAME = init_test_vars()
 
 def test_register_blob_datastore():
     """ Test Register Blob Datastore Method """
-    datastore_rg = CONFIG['DATASTORE_RG']
-    container_name = CONFIG['CONTAINER_NAME']  # Name of Azure blob container
-    account_name = CONFIG['ACCOUNT_NAME']  # Storage account name
-    account_key = CONFIG['ACCOUNT_KEY']  # Storage account key
+    datastore_rg = CONFIG['datastore_rg']
+    container_name = CONFIG['container_name']  # Name of Azure blob container
+    account_name = CONFIG['account_name']  # Storage account name
+    account_key = CONFIG['account_key']  # Storage account key
 
     blob_datastore = register_blob_datastore(WORKSPACE, BLOB_DATASTORE_NAME, container_name, account_name, account_key,
                                              datastore_rg)
