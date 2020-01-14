@@ -5,7 +5,6 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 """
 from pathlib import Path
-from typing import Union, Dict, Hashable, Any
 
 import yaml
 from azureml.core import Workspace

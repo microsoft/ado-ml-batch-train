@@ -52,7 +52,7 @@ def test_get_or_create_workspace():
     workspace = get_or_create_workspace(cfg['workspace_name'], cfg['subscription_id'], cfg['resource_group'],
                                         cfg['workspace_region'])
 
-    assert type(workspace) is Workspace
+    assert isinstance(workspace, Workspace)
     assert os.path.isfile('./.azureml/config.json')
 
 
@@ -64,4 +64,4 @@ def test_get_workspace_from_config():
                             cfg['workspace_region'])
 
     workspace = get_workspace_from_config()
-    assert type(workspace) is Workspace
+    assert isinstance(workspace, Workspace)

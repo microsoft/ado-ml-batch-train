@@ -20,10 +20,10 @@ def test_create_train_test_split():
     """ Test Create Train Test Split Function"""
     x_train, x_test, y_train, y_test = create_train_test_split(AI_IMPACT_SCORE_DS)
 
-    assert type(x_train) is pd.DataFrame
-    assert type(x_test) is pd.DataFrame
-    assert type(y_train) is pd.Series
-    assert type(y_test) is pd.Series
+    assert isinstance(x_train, pd.DataFrame)
+    assert type(x_test, pd.DataFrame)
+    assert type(y_train, pd.Series)
+    assert type(y_test, pd.Series)
 
 
 def test_create_plots():

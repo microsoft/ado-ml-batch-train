@@ -15,4 +15,4 @@ WORKSPACE = get_workspace_from_config()
 def test_get_ai_feedback_sample():
     """ Test Get AI Feedback Sample Dataset"""
     dataset_name = get_ai_feedback_sample(WORKSPACE)
-    assert type(dataset_name) is TabularDataset
+    assert isinstance(dataset_name, TabularDataset)
