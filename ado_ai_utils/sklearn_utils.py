@@ -5,22 +5,23 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 """
 import numpy as np
+import pandas as pd
+from azureml.data import TabularDataset
+from azureml.train.automl.run import AutoMLRun
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
 
-def create_train_test_split(ai_impact_score_ds, test_size=0.2, seed=223):
+def create_train_test_split(ai_impact_score_ds: TabularDataset, test_size: float = 0.2, seed: int = 223) \
+        -> (pd.DataFrame, pd.DataFrame, pd.Series, pd.Series):
     """
     Create an X and Y Training and Testing set using SKLearn
 
     :param ai_impact_score_ds: Returns a :class:`azureml.data.TabularDataset` object, a pointer to Azure ML Dataset
     that contains AI Impact Score Sample data from the Azure Machine Learning Workspace
-    :rtype: azureml.data.TabularDataset
     :param test_size: the proportion of the dataset to include in the test split
-    :type test_size: float, int or None, optional (default=0.2)
     :param seed: seed used by the random number generator
-    :type seed: int (default=223)
     :return: Returns four pandas DataFrames, X_Train, X_Test, Y_Train, Y_Test
     :rtype: pd.DataFrame, pandas.DataFrame, pandas.Series, pandas.Series
     """
@@ -37,20 +38,16 @@ def create_train_test_split(ai_impact_score_ds, test_size=0.2, seed=223):
     return x_train, x_test, y_train, y_test
 
 
-def create_plots(local_run, x_train, x_test, y_train, y_test):
+def create_plots(local_run: AutoMLRun, x_train: pd.DataFrame, x_test: pd.DataFrame, y_train: pd.Series,
+                 y_test: pd.Series):
     """
     Create Histogram Plots for Residuals
 
     :param local_run: Completed Local AutoML Run
-    :type local_run: AutoMLRun
     :param x_train: X Training DataSet
-    :type x_train: pandas.DataFrame
     :param x_test: X Test DataSet
-    :type x_test: pandas.DataFrame
     :param y_train: Y Training DataSet
-    :type y_train: pandas.DataFrame
     :param y_test: Y Test DataSet
-    :type y_test: pandas.DataFrame
     """
     _, fitted_model = local_run.get_output()
 

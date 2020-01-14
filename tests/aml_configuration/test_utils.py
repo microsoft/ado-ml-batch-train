@@ -49,10 +49,11 @@ def test_get_or_create_workspace():
     """Test Get or Create Workspace Method"""
     cfg = load_configuration("../../workspace_conf.yml")
 
-    get_or_create_workspace(cfg['workspace_name'], cfg['subscription_id'], cfg['resource_group'],
-                            cfg['workspace_region'])
+    workspace = get_or_create_workspace(cfg['workspace_name'], cfg['subscription_id'], cfg['resource_group'],
+                                        cfg['workspace_region'])
 
-    assert os.path.isfile('../.azureml/config.json')
+    assert type(workspace) is Workspace
+    assert os.path.isfile('./.azureml/config.json')
 
 
 def test_get_workspace_from_config():

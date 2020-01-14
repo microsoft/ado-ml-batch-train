@@ -5,6 +5,7 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 """
 from pathlib import Path
+from typing import Union, Dict, Hashable, Any
 
 import yaml
 from azureml.core import Workspace
@@ -12,16 +13,14 @@ from azureml.core.authentication import InteractiveLoginAuthentication
 from dotenv import find_dotenv
 
 
-def init_dotenv(path=".env"):
+def init_dotenv(path: str = ".env") -> str:
     """
     Initialize a new DotEnv
 
     See PyPi for more details: https://pypi.org/project/python-dotenv/
 
     :param path: File Path for .env file to be loaded, or created
-    :type path: str
     :return: Return a :class:`str` object, containing the path to the env file
-    :rtype: str
     """
     env_path = find_dotenv()
     if env_path == "":
@@ -30,7 +29,7 @@ def init_dotenv(path=".env"):
     return env_path
 
 
-def load_configuration(configuration_file):
+def load_configuration(configuration_file: str):
     """
     Load the Workspace Configuration File.
 
@@ -40,7 +39,6 @@ def load_configuration(configuration_file):
     This file is set to in the .gitignore to prevent accidental comments.
 
     :param configuration_file: File Path to configuration yml
-    :type configuration_file: str
     :return: Returns the parameters needed to configure the AML Workspace and Experiments
     :rtype: Union[Dict[Hashable, Any], list, None], str, str, str, str, Workspace, str, str
     """
@@ -50,7 +48,8 @@ def load_configuration(configuration_file):
     return cfg
 
 
-def get_or_create_workspace(workspace_name, subscription_id, resource_group, workspace_region):
+def get_or_create_workspace(workspace_name: str, subscription_id: str, resource_group: str, workspace_region: str) \
+        -> Workspace:
     """
     Create a new Azure Machine Learning workspace. If the workspace already exists, the existing workspace will be
     returned. Also create a CONFIG file to quickly reload the workspace.
@@ -75,15 +74,8 @@ def get_or_create_workspace(workspace_name, subscription_id, resource_group, wor
     """
     auth = InteractiveLoginAuthentication()
 
-    workspace = Workspace.create(
-        name=workspace_name,
-        subscription_id=subscription_id,
-        resource_group=resource_group,
-        location=workspace_region,
-        create_resource_group=True,
-        auth=auth,
-        exist_ok=True,
-    )
+    workspace = Workspace.create(name=workspace_name, subscription_id=subscription_id, resource_group=resource_group,
+                                 location=workspace_region, create_resource_group=True, auth=auth, exist_ok=True)
     workspace.write_config()
 
     return workspace
