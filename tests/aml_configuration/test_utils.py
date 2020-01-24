@@ -8,19 +8,8 @@ import os
 
 from azureml.core import Workspace
 
-from ado_ai_utils.aml_configuration.utils import init_dotenv, load_configuration, get_or_create_workspace, \
+from ado_ai_utils.aml_configuration.utils import load_configuration, get_or_create_workspace, \
     get_workspace_from_config
-
-
-def test_init_dotenv():
-    """ Test Init DovEnv Method """
-    if os.path.isfile('.env'):
-        os.remove(".env")
-    init_dotenv()
-    assert os.path.isfile('.env')
-
-    init_dotenv()
-    assert os.path.isfile('.env')
 
 
 def test_load_configuration():

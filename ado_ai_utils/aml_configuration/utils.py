@@ -5,28 +5,11 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 """
 import os
-from pathlib import Path
+from typing import Union
 
 import yaml
 from azureml.core import Workspace
-from azureml.core.authentication import InteractiveLoginAuthentication
-from dotenv import find_dotenv
-
-
-def init_dotenv(path: str = ".env") -> str:
-    """
-    Initialize a new DotEnv
-
-    See PyPi for more details: https://pypi.org/project/python-dotenv/
-
-    :param path: File Path for .env file to be loaded, or created
-    :return: Return a :class:`str` object, containing the path to the env file
-    """
-    env_path = find_dotenv()
-    if env_path == "":
-        Path(path).touch()
-        env_path = find_dotenv()
-    return env_path
+from azureml.core.authentication import InteractiveLoginAuthentication, ServicePrincipalAuthentication
 
 
 def load_configuration(configuration_file: str):
@@ -51,8 +34,9 @@ def load_configuration(configuration_file: str):
     return cfg
 
 
-def get_or_create_workspace(workspace_name: str, subscription_id: str, resource_group: str, workspace_region: str) \
-        -> Workspace:
+def get_or_create_workspace(workspace_name: str, subscription_id: str, resource_group: str, workspace_region: str,
+                            auth: Union[InteractiveLoginAuthentication, ServicePrincipalAuthentication] =
+                            InteractiveLoginAuthentication()) -> Workspace:
     """
     Create a new Azure Machine Learning workspace. If the workspace already exists, the existing workspace will be
     returned. Also create a CONFIG file to quickly reload the workspace.
@@ -71,12 +55,14 @@ def get_or_create_workspace(workspace_name: str, subscription_id: str, resource_
     :type resource_group: str
     :param workspace_region: The Azure region to deploy the workspace.
     :type workspace_region: str
+    :param auth: Derived classes provide different means to authenticate and acquire a token based on their targeted
+    use case.
+    For examples of authentication, see https://aka.ms/aml-notebook-auth.
+    :type auth: azureml.core.authentication.AbstractAuthentication
     :return: Returns a :class:`azureml.core.Workspace` object, a pointer to Azure Machine Learning Workspace
     Learning Workspace
     :rtype: azureml.core.Workspace
     """
-    auth = InteractiveLoginAuthentication()
-
     workspace = Workspace.create(name=workspace_name, subscription_id=subscription_id, resource_group=resource_group,
                                  location=workspace_region, create_resource_group=True, auth=auth, exist_ok=True)
     workspace.write_config()

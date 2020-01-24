@@ -22,8 +22,8 @@ def get_local_automl_config(x_train: pd.DataFrame, y_train: pd.DataFrame) -> Aut
     :param y_train: Y Training DataFrame
     :return: AutoMLConfig for local run
     """
-    return AutoMLConfig(task='regression', iteration_timeout_minutes=10, iterations=10,
-                        primary_metric='spearman_correlation', n_cross_validations=5, debug_log='automl.log',
+    return AutoMLConfig(task='regression', iteration_timeout_minutes=5, iterations=1,
+                        primary_metric='spearman_correlation', debug_log='automl.log',
                         verbosity=logging.INFO, X=x_train, y=y_train, preprocess=True)
 
 
@@ -54,16 +54,14 @@ def get_or_create_local_run(workspace: Workspace, automl_config: AutoMLConfig) -
     :return: run
     """
     experiment = Experiment(workspace, "ai-impact-score-experiment")
-
     runs = experiment.get_runs()
 
     def get_first_run_id():
         """ Retrieve the most recent run if it has already completed """
-        if not runs:
+        run = next(runs, None)
+        if run is None:
             return experiment.submit(automl_config).id
-
-        for run in runs:
-            return run.id
+        return run.id
 
     run_id = get_first_run_id()
     return AutoMLRun(experiment=experiment, run_id=run_id)
