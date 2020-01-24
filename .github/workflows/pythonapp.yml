@@ -15,10 +15,11 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        conda env create -f environment.yml python=3.6 --force
+        source activate MLHyperparameterTuning
     - name: Lint with flake8
       run: |
+        source activate MLHyperparameterTuning
         pip install flake8
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -26,5 +27,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        source activate MLHyperparameterTuning
         pip install pytest
+        cd tests
         pytest
