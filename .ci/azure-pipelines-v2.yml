@@ -22,6 +22,7 @@ stages:
     post_cleanup: false
     flighting_release: false
     flighting_preview: false
+    flighting_master: false
     data_prep: $(data_prep)
     train: $(train)
     sql_server_name: $(sql_server_name)
