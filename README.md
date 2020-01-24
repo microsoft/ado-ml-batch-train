@@ -47,7 +47,7 @@ To set up your environment to run these notebooks, please follow these steps.  T
    ```
 7. Activate the virtual environment:
    ```
-   source activate MLHyperparameterTuning
+   source activate ado-ml-batch-train
    ```
    The remaining steps should be done in this virtual environment.
 8. Login to Azure:
