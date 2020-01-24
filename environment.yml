@@ -1,4 +1,4 @@
-name: MLHyperparameterTuning
+name: ado-ml-batch-train
 channels:
   - conda-forge
 dependencies:
@@ -9,14 +9,14 @@ dependencies:
   - pandas==0.23.4
   - scikit-learn==0.21.3
   - lightgbm==2.2.1
+  - matplotlib==3.1.2
   - pip:
     - python-dotenv
     - prompt_toolkit==2.0.9
     - azure-cli==2.0.77
     - azureml-sdk[notebooks,automl]==1.0.76
     - azureml-dataprep==1.1.35
-    - git+https://github.com/Microsoft/AI-Utilities.git
-    - matplotlib
     - pyarrow>=0.11.0
-    - pytest
-    - pylint
+    - pytest==5.3.4
+    - pylint==2.4.4
+    - git+https://github.com/Microsoft/AI-Utilities.git
