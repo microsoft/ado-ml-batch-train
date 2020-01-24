@@ -10,7 +10,7 @@ dependencies:
   - pandas==0.23.4
   - scikit-learn==0.21.3
   - lightgbm==2.2.1
-  - matplotlib==3.1.2
+  - matplotlib
   - pip:
       - prompt_toolkit==2.0.9
       - azure-cli==2.0.77
