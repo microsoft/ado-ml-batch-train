@@ -1,37 +1,27 @@
 ![](https://dev.azure.com/customai/MLHyperparameterTuningPipeline/_apis/build/status/Microsoft.MLHyperparameterTuning?branchName=master)
-### Author: Mario Bourgoin
+### Author: Daniel Ciborowski
 
-# ALPHA - Training of Python scikit-learn models Azure DevOps
+# ALPHA - Using AutoML to make predictions on Azure DevOps Work Items.
 
 ## Overview
 
-This scenario shows how to tune a Frequently Asked Questions (FAQ) matching model that can be deployed as a web service to provide predictions for user questions. For this scenario, "Input Data" in the architecture diagram refers to text strings containing the user questions to match with a list of FAQs. The scenario is designed for the Scikit-Learn machine learning library for Python but can be generalized to any scenario that uses Python models to make real-time predictions.
 
 ## Design
 
-![alt text](Design.png "Design")
-The scenario uses a subset of Stack Overflow question data which includes original questions tagged as JavaScript, their duplicate questions, and their answers. It tunes a Scikit-Learn pipeline to predict the match probability of a duplicate question with each of the original questions. The application flow for this architecture is as follows:
-
 1. Create an Azure ML Service workspace.
 2. Create an Azure ML Compute cluster.
-3. Upload training, tuning, and testing data to Azure Storage.
-4. Configure a HyperDrive random hyperparameter search.
-5. Submit the search.
-6. Monitor until complete.
-7. Retrieve the best set of hyperparameters.
+3. 
+4. 
+5. 
+6. 
+7. 
 8. Register the best model.
 
 ## Prerequisites
 
-1. Linux (Ubuntu).
-2. [Anaconda Python](https://www.anaconda.com/download) installed.
-3. [Azure account](https://azure.microsoft.com).
+1. [Anaconda Python](https://www.anaconda.com/download) installed.
+2. [Azure account](https://azure.microsoft.com).
 
-The tutorial was developed on an [Azure Ubuntu
-DSVM](https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro),
-which addresses the first two prerequisites.  You can allocate such a
-VM on [Azure Portal](https://portal.azure.com) by creating a "Data
-Science Virtual Machine for Linux (Ubuntu)" resource.
 
 ## Setup
 
@@ -57,7 +47,7 @@ To set up your environment to run these notebooks, please follow these steps.  T
    ```
 7. Activate the virtual environment:
    ```
-   source activate MLHyperparameterTuning
+   source activate ado-ml-batch-train
    ```
    The remaining steps should be done in this virtual environment.
 8. Login to Azure:

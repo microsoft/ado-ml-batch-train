@@ -1,4 +1,4 @@
-# MLHyperparameterTuning  Pipeline
+# ado-ml-batch-train  Pipeline
 #
 # A Github Service Connection must also be created with the name "AIArchitecturesAndPractices-GitHub"
 
@@ -11,8 +11,6 @@ resources:
 
 trigger: none
 
-pr: none
-
 stages:
 - template: .ci/stages/deploy_notebooks_stages_v2.yml@aitemplates
   parameters:
@@ -24,6 +22,7 @@ stages:
     post_cleanup: false
     flighting_release: false
     flighting_preview: false
+    flighting_master: false
     data_prep: $(data_prep)
     train: $(train)
     sql_server_name: $(sql_server_name)
